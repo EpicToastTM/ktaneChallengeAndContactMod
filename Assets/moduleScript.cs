@@ -35,20 +35,20 @@ public class moduleScript : MonoBehaviour {
     // There are 22 questions.
 
     private string[] question1Answers = { "keypad", "maze", "memory", "password", "wires" };
-    private string[] question2Answers = { "accumulation", "algebra", "blockbusters", "catchphrase", "coffeebucks", "countdown", "lightspeed", "maintenance", "modulo", "poker",
+    private string[] question2Answers = { "accumulation", "algebra", "blockbusters", "catchphrase", "coffeebucks", "countdown", "hieroglyphics", "lightspeed", "maintenance", "modulo", "poker",
                                           "quintuples", "retirement", "skyrim", "snooker" };
     private string[] question3Answers = { "battleship", "bitmaps", "braille", "coordinates", "friendship", "gridlock", "hexamaze", "kudosudoku", "lasers", "mafia", "mahjong",
                                           "souvenir", "superlogic", "tennis", "yahtzee", "zoo" };
-    private string[] question4Answers = { "blind", "boolean", "polyhedral", "scrambler", "usa" };
+    private string[] question4Answers = { "blind", "boolean", "factory", "polyhedral", "scrambler", "usa" };
     private string[] question5Answers = { "code", "coffeebucks", "listening", "safe", "samples", "kudosudoku" };
     private string[] question6Answers = { "colored", "divided", "mystic", "uncolored", "button" };
     private string[] question7Answers = { "determinants", "edgework", "filibuster", "knob", "math", "tetris" };
     private string[] question8Answers = { "ac", "hdmi", "pcmcia", "usb", "vga" };
     private string[] question9Answers = { "bob", "car", "clr", "frk", "frq", "ind", "msa", "nsa", "sig", "snd", "trn" };
-    private string[] question10Answers = { "bitmaps", "boggle", "fizzbuzz", "friendship", "mahjong", "radiator" };
-    private string[] question11Answers = { "broken", "complicated", "logical", "masher", "rapid", "sequence", "square", "the" };
-    private string[] question12Answers = { "complicated", "perplexing", "placement", "sequence", "spaghetti", "the" };
-    private string[] question13Answers = { "cooking", "countdown", "fizzbuzz", "gridlock", "hunting", "instructions", "kudosudoku", "logic", "modulo", "modbus", "plumbing", "rhythms", "sink", "skyrim", "synonyms", "zoo" };
+    private string[] question10Answers = { "bitmaps", "boggle", "fizzbuzz", "friendship", "instructions", "mahjong", "radiator" };
+    private string[] question11Answers = { "broken", "complicated", "logical", "masher", "rapid", "sequence", "spinning", "square", "the" };
+    private string[] question12Answers = { "complicated", "perplexing", "placement", "sequence", "skinny", "spaghetti", "the" };
+    private string[] question13Answers = { "cooking", "countdown", "crackbox", "fizzbuzz", "functions", "gridlock", "hunting", "instructions", "kudosudoku", "logic", "modbus", "modulo", "plumbing", "rhythms", "scripting", "sink", "skyrim", "synonyms", "zoo" };
     private string[] question14Answers = { "chords", "jukebox", "keys", "qualities", "rhythms", "samples", "sings" };
     private string[] question15Answers = { "adam", "ashley", "bob", "cheryl", "dave", "gary", "george", "jacob", "jade", "jessica", "mike", "pat", "sally", "sam", "sean", "simon", "taylor", "tim", "tom", "victor" };
     private string[] question16Answers = { "ballroom", "conservatory", "hall", "kitchen", "library", "lounge", "study" };
@@ -76,8 +76,8 @@ public class moduleScript : MonoBehaviour {
                                           "detonession", "indicitis", "juliett", "jaundry", "jukepox", "jukepox", "mike", "quackgrounds", "tetrinus", "widgeting", "wires", "zoo", "zooties",
                                           "alfa", "caller", "astrology", "jacob", "ticket", "tim", "retirement", "seated", "secure", "sedate", "stream", "stepladder", "study", "taylor", "tamers", "aluga",
                                           "asteran", "caadarim", "button", "buhar", "clr", "clondar", "lasers", "lanaluff", "lamp", "magmy", "memory", "melbor", "moonstone", "mountoise", "mystic", "myrchat",
-                                          "percy", "perplexing", "pouse", "verticode", "vellarim", "modulo" };
-    // 141 possible final answers.
+                                          "percy", "perplexing", "pouse", "verticode", "vellarim", "modbus", "spinning", "spaghetti", "crackbox", "cryptography" };
+    // 145 possible final answers.
     
     private string[] possibleSecondAnswers = { "keypad", "keys", "blockbusters", "blind", "coordinates", "code", "colored", "complicated", "cooking",
                                           "conservatory", "catchphrase", "car", "snooker", "snd", "lightspeed", "listening", "library", "maintenance", "mafia", "maze", "math", "masher",
@@ -89,21 +89,21 @@ public class moduleScript : MonoBehaviour {
                                           "indicitis", "jaundry", "jukebox", "jukepox", "mike", "quackgrounds", "tetrinus", "widgeting", "wires", "zoo", "zooties", "algebra", "caller",
                                           "ashley", "ticket", "tim", "retirement", "seated", "stream", "stepladder", "study", "taylor", "tamers", "aluga", "asteran", "caadarim", "button", "buhar", "clr",
                                           "clondar", "lamp", "lanaluff", "lasers", "magmy", "memory", "melbor", "moonstone", "mountoise", "myrchat", "mystic", "perplexing", "percy", "pouse", "verticode",
-                                          "vellarim", "modulo" };
+                                          "vellarim", "modbus", "spinning", "spaghetti", "crackbox", "cryptography" };
 
-    // 129 possible second answers.
+    // 133 possible second answers.
 
     private string[] possibleFirstAnswers = { "coordinates", "code", "colored", "complicated", "cooking",
                                           "conservatory", "lightspeed", "listening", "library", "maintenance", "mafia", "math", "masher", "frk", "bob", "sig", "sink", "logical", "logic",
                                           "knob", "pcmcia", "msa", "trn", "the", "rhythms", "kitchen", "study", "ind", "instructions", "india",
                                           "quebec", "qualities", "quintuples", "kudosudoku", "balloon", "battleship", "ballroom",
-                                          "papa", "potion", "stepladder", "adam", "cryptography", "semaphore", "sequence", "barely", "caller", "duster", "dave", "divided",
+                                          "papa", "potion", "stepladder", "adam", "semaphore", "sequence", "barely", "caller", "duster", "dave", "divided",
                                           "looped", "master", "poodle", "poker", "polyhedral", "rashes", "rapid", "radiator", "tennis", "tetris", "braintenance", "broken", "bravo",
                                           "detonession", "determinants", "delta", "indicitis", "jaundry", "jacob", "juliett", "jukebox", "legomania", "quackgrounds", "tetrinus", "whiskey", "zulu", "car",
                                           "catchphrase", "recall", "seated", "aluga", "alfa", "astrology", "caadarim", "docsplode", "flaurim", "lanaluff", "lamp", "magmy", "ukkens",
-                                          "uncolored", "vga", "victor", "zapra", "moonstone" };
+                                          "uncolored", "vga", "victor", "zapra", "moonstone", "modbus", "functions", "scripting", "factory" };
 
-    // 93 possible first answers.
+    // 96 possible first answers.
 
     private string[] alphabet = { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z" };
     private int alphabetPos = 0;
@@ -140,7 +140,7 @@ public class moduleScript : MonoBehaviour {
     private int randomChallenge = 0;
     private int randomSound = 0;
 
-    private string commandEnd = "";
+    private string commandEnd;
     private bool soundPlaying = false;
 
     private float[] rotationAmount = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
@@ -180,6 +180,7 @@ public class moduleScript : MonoBehaviour {
 
         contact.OnInteract += delegate ()
         {
+            contact.AddInteractionPunch();
             if (lightsOn)
             {
                 if (!flipped)
@@ -207,6 +208,7 @@ public class moduleScript : MonoBehaviour {
 
         enter.OnInteract += delegate ()
         {
+            enter.AddInteractionPunch();
             if (flipped)
             {
                 Challenge();
@@ -245,10 +247,10 @@ public class moduleScript : MonoBehaviour {
         // Start of module generation
 
         // Edit the number below this comment when changing the possibleFirstAnswers.
-        answers[0] = possibleFirstAnswers[Random.Range(0, 93)];
+        answers[0] = possibleFirstAnswers[Random.Range(0, possibleFirstAnswers.Length)];
 
         // Edit the number below this comment when changing the possibleSecondAnswers.
-        for (int i = 0; i < 129; i++)
+        for (int i = 0; i < possibleSecondAnswers.Length; i++)
         {
             if (possibleSecondAnswers[i].Substring(0, 1) == answers[0].Substring(0, 1) && answers[0] != possibleSecondAnswers[i])
             {
@@ -267,7 +269,7 @@ public class moduleScript : MonoBehaviour {
         counter = 0;
 
         // Edit the number below this comment when changing the possibleFinalAnswers
-        for (int i = 0; i < 141; i++)
+        for (int i = 0; i < possibleFinalAnswers.Length; i++)
         {
             if (possibleFinalAnswers[i].Substring(0, 2) == answers[1].Substring(0, 2) && answers[0] != possibleFinalAnswers[i] && answers[1] != possibleFinalAnswers[i])
             {
@@ -589,9 +591,9 @@ public class moduleScript : MonoBehaviour {
     {
         Debug.LogFormat("[Challenge & Contact #{0}] You submitted {1}. The answer was {2}.", _moduleID, challenge.text, answers[stageNum]);
 
-        if (timer.text == "GO!")
+        if (challenge.text == answers[stageNum])
         {
-            if (challenge.text == answers[stageNum])
+            if (timer.text == "GO!")
             {
                 stageNum++;
 
@@ -612,18 +614,18 @@ public class moduleScript : MonoBehaviour {
 
             else
             {
-                Module.HandleStrike();
                 wasSolutionCorrect = false;
 
-                Debug.LogFormat("[Challenge & Contact #{0}] That was the wrong answer.", _moduleID);
+                Debug.LogFormat("[Challenge & Contact #{0}] You submitted at the wrong time.", _moduleID);
             }
         }
 
         else
         {
+            Module.HandleStrike();
             wasSolutionCorrect = false;
 
-            Debug.LogFormat("[Challenge & Contact #{0}] You submitted at the wrong time.", _moduleID);
+            Debug.LogFormat("[Challenge & Contact #{0}] That was the wrong answer.", _moduleID);
         }
     }
 
@@ -644,7 +646,7 @@ public class moduleScript : MonoBehaviour {
 
         playSounds(1);
 
-        seconds = answers[stageNum].Length / (stageNum / 4 + 4f) * 3f;
+        seconds = answers[stageNum].Length / 3.5f * 3f;
 
         if (seconds < 3)
         {
@@ -703,6 +705,8 @@ public class moduleScript : MonoBehaviour {
     {
         return delegate
             {
+                keys[i].AddInteractionPunch();
+
                 if (flipped)
                 {
                     challenge.color = new Color32(255, 255, 255, 255);
@@ -792,6 +796,14 @@ public class moduleScript : MonoBehaviour {
                 yield return new WaitForSeconds(.5f);
             }
 
+            yield return new KMSelectable[] { enter };
+        }
+
+        else if (command.ToLowerInvariant() == "reset")
+        {
+            challenge.text = answers[stageNum];
+
+            yield return null;
             yield return new KMSelectable[] { enter };
         }
         

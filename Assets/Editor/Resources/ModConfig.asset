@@ -13,10 +13,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   id: challengeAndContact
   title: Challenge & Contact
-  description: "Why do we keep making modules based on games? Bomb defusal is supposed
-    to be stressful, not fun...\n\nThanks a whole bunch to the people who sent the
-    voice clips: LeGeND, Luna, Timwi, Yabbaguy, and Orinami.\n\nManuals...\nHTML:
-    Coming soon\u2122.\nPDF: Coming soon\u2122."
+  description: 'Why do we keep making modules based on games? Bomb defusal is supposed
+    to be stressful, not fun...
+
+
+    Thanks a whole bunch to the people who sent the voice clips: LeGeND, Luna, Timwi,
+    Yabbaguy, and Orinami.
+
+
+    Manuals...
+
+    HTML: https://ktane.timwi.de/HTML/Challenge%20%26%20Contact.html
+
+    PDF: https://ktane.timwi.de/PDF/Challenge%20&%20Contact.pdf'
   version: 
   outputFolder: build
   previewImage: {fileID: 2800000, guid: bc827c637cff36b408f99e06a958736d, type: 3}
