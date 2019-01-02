@@ -3,13 +3,14 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using UnityEngine;
 using System.Linq;
-using KMHelper;
+using KModkit;
 
 public class moduleScript : MonoBehaviour {
 
     public KMAudio Audio;
     public KMBombModule Module;
     public KMBombInfo Info;
+    public KMRuleSeedable ruleseed;
     public KMSelectable contact, enter;
     public KMSelectable[] keys;
     public TextMesh[] keyText;
@@ -37,11 +38,11 @@ public class moduleScript : MonoBehaviour {
     private string[] question1Answers = { "keypad", "maze", "memory", "password", "wires" };
     private string[] question2Answers = { "accumulation", "algebra", "blockbusters", "catchphrase", "coffeebucks", "countdown", "hieroglyphics", "lightspeed", "maintenance", "modulo", "poker",
                                           "quintuples", "retirement", "skyrim", "snooker" };
-    private string[] question3Answers = { "battleship", "bitmaps", "braille", "coordinates", "friendship", "gridlock", "hexamaze", "kudosudoku", "lasers", "mafia", "mahjong",
+    private string[] question3Answers = { "battleship", "bitmaps", "braille", "coordinates", "friendship", "gridlock", "hexamaze", "hogwarts", "kudosudoku", "lasers", "mafia", "mahjong",
                                           "souvenir", "superlogic", "tennis", "yahtzee", "zoo" };
     private string[] question4Answers = { "blind", "boolean", "factory", "polyhedral", "scrambler", "usa" };
     private string[] question5Answers = { "code", "coffeebucks", "listening", "safe", "samples", "kudosudoku" };
-    private string[] question6Answers = { "colored", "divided", "mystic", "uncolored", "button" };
+    private string[] question6Answers = { "colored", "discolored", "divided", "mystic", "uncolored", "button" };
     private string[] question7Answers = { "determinants", "edgework", "filibuster", "knob", "math", "tetris" };
     private string[] question8Answers = { "ac", "hdmi", "pcmcia", "usb", "vga" };
     private string[] question9Answers = { "bob", "car", "clr", "frk", "frq", "ind", "msa", "nsa", "sig", "snd", "trn" };
@@ -76,7 +77,7 @@ public class moduleScript : MonoBehaviour {
                                           "detonession", "indicitis", "juliett", "jaundry", "jukepox", "jukepox", "mike", "quackgrounds", "tetrinus", "widgeting", "wires", "zoo", "zooties",
                                           "alfa", "caller", "astrology", "jacob", "ticket", "tim", "retirement", "seated", "secure", "sedate", "stream", "stepladder", "study", "taylor", "tamers", "aluga",
                                           "asteran", "caadarim", "button", "buhar", "clr", "clondar", "lasers", "lanaluff", "lamp", "magmy", "memory", "melbor", "moonstone", "mountoise", "mystic", "myrchat",
-                                          "percy", "perplexing", "pouse", "verticode", "vellarim", "modbus", "spinning", "spaghetti", "crackbox", "cryptography" };
+                                          "percy", "perplexing", "pouse", "verticode", "vellarim", "modbus", "spinning", "spaghetti", "crackbox", "cryptography", "hotel", "hogwarts" };
     // 145 possible final answers.
     
     private string[] possibleSecondAnswers = { "keypad", "keys", "blockbusters", "blind", "coordinates", "code", "colored", "complicated", "cooking",
@@ -89,19 +90,19 @@ public class moduleScript : MonoBehaviour {
                                           "indicitis", "jaundry", "jukebox", "jukepox", "mike", "quackgrounds", "tetrinus", "widgeting", "wires", "zoo", "zooties", "algebra", "caller",
                                           "ashley", "ticket", "tim", "retirement", "seated", "stream", "stepladder", "study", "taylor", "tamers", "aluga", "asteran", "caadarim", "button", "buhar", "clr",
                                           "clondar", "lamp", "lanaluff", "lasers", "magmy", "memory", "melbor", "moonstone", "mountoise", "myrchat", "mystic", "perplexing", "percy", "pouse", "verticode",
-                                          "vellarim", "modbus", "spinning", "spaghetti", "crackbox", "cryptography" };
+                                          "vellarim", "modbus", "spinning", "spaghetti", "crackbox", "cryptography", "hotel", "hogwarts" };
 
     // 133 possible second answers.
 
     private string[] possibleFirstAnswers = { "coordinates", "code", "colored", "complicated", "cooking",
                                           "conservatory", "lightspeed", "listening", "library", "maintenance", "mafia", "math", "masher", "frk", "bob", "sig", "sink", "logical", "logic",
                                           "knob", "pcmcia", "msa", "trn", "the", "rhythms", "kitchen", "study", "ind", "instructions", "india",
-                                          "quebec", "qualities", "quintuples", "kudosudoku", "balloon", "battleship", "ballroom",
-                                          "papa", "potion", "stepladder", "adam", "semaphore", "sequence", "barely", "caller", "duster", "dave", "divided",
+                                          "quebec", "qualities", "quintuples", "kudosudoku", "balloon", "battleship", "ballroom", "discolored",
+                                          "papa", "potion", "stepladder", "adam", "semaphore", "sequence", "barely", "caller", "duster", "dave",
                                           "looped", "master", "poodle", "poker", "polyhedral", "rashes", "rapid", "radiator", "tennis", "tetris", "braintenance", "broken", "bravo",
                                           "detonession", "determinants", "delta", "indicitis", "jaundry", "jacob", "juliett", "jukebox", "legomania", "quackgrounds", "tetrinus", "whiskey", "zulu", "car",
                                           "catchphrase", "recall", "seated", "aluga", "alfa", "astrology", "caadarim", "docsplode", "flaurim", "lanaluff", "lamp", "magmy", "ukkens",
-                                          "uncolored", "vga", "victor", "zapra", "moonstone", "modbus", "functions", "scripting", "factory" };
+                                          "uncolored", "vga", "victor", "zapra", "moonstone", "modbus", "functions", "scripting", "factory", "hexamaze", "hunting", "hdmi", "hrv", "hall" };
 
     // 96 possible first answers.
 
@@ -144,6 +145,21 @@ public class moduleScript : MonoBehaviour {
     private bool soundPlaying = false;
 
     private float[] rotationAmount = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    private int[] firstRule = { 6, 0 }; // Holds the rule for which cipher is used. First # is the number used, second # is the condition it must be.
+    // First #: 0-5: sum of #'th digit of all two factors. 6: solved modules. 7: unsolved modules. 8: # of strikes.
+    // Second #: EVEN, ODD, PRIME, PRIMEN'T, DIVISIBLE BY 3, NOT DIVISIBLE BY 3.
+    private int[] unicornRule = { 0, 0 }; // Holds the unicorn rule. (Unicorn rule will always involve the lit BOB indicator.)
+    // First #: 0: batteries, 1: battery holders, 2: indicators, 3: ports, 4: port plates, 5: two factors. The second number is what it must be equal to.
+    private int firstStageRule = 6; // Basically just unicornRule[0], but with Info.GetModuleNames.Count().
+
+    private readonly int[] primes = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103,
+    107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 281, 283, 293, 307, 311, 313,
+    317, 331, 337, 347, 349, 353, 359, 367, 373, 379, 383, 389, 397, 401, 409, 419, 421, 431, 433, 439, 443, 449, 457, 461, 463, 467, 479, 487,
+    491, 499, 503, 509, 521, 523, 541, 547, 557, 563, 569, 571, 577, 587, 593, 599, 601, 607, 613, 617, 619, 631, 641, 643, 647, 653, 659, 661,
+    673, 677, 683, 691, 701, 709, 719, 727, 733, 739, 743, 751, 757, 761, 769, 773, 787, 797, 809, 811, 821, 823, 827, 829, 839, 853, 857, 859,
+    863, 877, 881, 883, 887, 907, 911, 919, 929, 937, 941, 947, 953, 967, 971, 977, 983, 991, 997 };
+
+    int[] ruleAmounts = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
     void Start() {
         _moduleID = _moduleIDCounter++;
@@ -308,48 +324,24 @@ public class moduleScript : MonoBehaviour {
         Debug.LogFormat("[Challenge & Contact #{0}] The clues are {1}, {2}, and {3}.", _moduleID, usedClues[0].Replace("\n", " "), usedClues[1].Replace("\n", " "), usedClues[2].Replace("\n", " "));
 
         // End of module generation
-
+        
         for (int i = 0; i < 3; i++)
         {
             displayedLetters[i] = "";
         }
-
-        if (Info.GetOnIndicators().Contains("BOB") && Info.GetBatteryCount() == 0)
+        
+        for (int i = 0; i < 3; i++)
         {
-            for (int i = 0; i < 3; i++)
+            for (int x = 0; x < 26; x++)
             {
-                displayedLetters[i] = answers[2].Substring(i, 1);
-                whatUsed = "nothing";
-            }
-        }
-
-        else
-        {
-            for (int i = 0; i < 3; i++)
-            {
-                for (int x = 0; x < 26; x++)
+                if (alphabet[x] == answers[2].Substring(i, 1))
                 {
-                    if (alphabet[x] == answers[2].Substring(i, 1))
-                    {
-                        letterNumbers[i] = x + 1;
-                    }
+                    letterNumbers[i] = x + 1;
                 }
+            }
 
                 rot13letters[i] = alphabet[(letterNumbers[i] + 12) % 26];
                 atbashletters[i] = alphabet[26 - letterNumbers[i]];
-
-                if (Info.GetModuleNames().Count % 2 == 0)
-                {
-                    displayedLetters[0] = rot13letters[0];
-                    whatUsed = "rot13";
-                }
-
-                else
-                {
-                    displayedLetters[0] = atbashletters[0];
-                    whatUsed = "atbash";
-                }
-            }
         }
 
         for (int i = 0; i < 26; i++)
@@ -376,7 +368,135 @@ public class moduleScript : MonoBehaviour {
             }
         }
 
+        SetUpRuleseed();
         MakeClue();
+    }
+
+    void SetUpRuleseed()
+    {
+        var rnd = ruleseed.GetRNG();
+        int[] unicornAmounts = { Info.GetBatteryCount(), Info.GetBatteryHolderCount(), Info.GetIndicators().Count(), Info.GetPortCount(), Info.GetPortPlateCount(), Info.GetTwoFactorCounts(), Info.GetModuleNames().Count() };
+        
+        if (rnd.Seed != 1)
+        {
+            int rndNum = rnd.Next(5, 9);
+
+            if (rndNum == 5)
+            {
+                firstRule[0] = rnd.Next(0, 6);
+            }
+
+            else
+            {
+                firstRule[0] = rndNum;
+            }
+
+            firstRule[1] = rnd.Next(6);
+
+            unicornRule[0] = rnd.Next(6);
+            unicornRule[1] = rnd.Next(5);
+
+            firstStageRule = rnd.Next(7);
+        }
+        
+        if (Info.GetOnIndicators().Contains("BOB") && unicornAmounts[unicornRule[0]] == unicornRule[1])
+        {
+            for (int i = 0; i < 3; i++)
+            {
+                displayedLetters[i] = answers[2].Substring(i, 1);
+                whatUsed = "nothing";
+            }
+        }
+
+        else if (firstRule[1] == 0)
+        {
+            if (unicornAmounts[firstStageRule] % 2 == 0)
+            {
+                displayedLetters[0] = rot13letters[0];
+                whatUsed = "rot13";
+            }
+
+            else
+            {
+                displayedLetters[0] = atbashletters[0];
+                whatUsed = "atbash";
+            }
+        }
+
+        else if (firstRule[1] == 1)
+        {
+            if (unicornAmounts[firstStageRule] % 2 == 1)
+            {
+                displayedLetters[0] = rot13letters[0];
+                whatUsed = "rot13";
+            }
+
+            else
+            {
+                displayedLetters[0] = atbashletters[0];
+                whatUsed = "atbash";
+            }
+        }
+
+        else if (firstRule[1] == 2)
+        {
+            if (primes.Contains(unicornAmounts[firstStageRule]))
+            {
+                displayedLetters[0] = rot13letters[0];
+                whatUsed = "rot13";
+            }
+
+            else
+            {
+                displayedLetters[0] = atbashletters[0];
+                whatUsed = "atbash";
+            }
+        }
+
+        else if (firstRule[1] == 3)
+        {
+            if (!primes.Contains(unicornAmounts[firstStageRule]))
+            {
+                displayedLetters[0] = rot13letters[0];
+                whatUsed = "rot13";
+            }
+
+            else
+            {
+                displayedLetters[0] = atbashletters[0];
+                whatUsed = "atbash";
+            }
+        }
+
+        else if (firstRule[1] == 4)
+        {
+            if (unicornAmounts[firstStageRule] % 3 == 0)
+            {
+                displayedLetters[0] = rot13letters[0];
+                whatUsed = "rot13";
+            }
+
+            else
+            {
+                displayedLetters[0] = atbashletters[0];
+                whatUsed = "atbash";
+            }
+        }
+
+        else
+        {
+            if (unicornAmounts[firstStageRule] % 3 != 0)
+            {
+                displayedLetters[0] = rot13letters[0];
+                whatUsed = "rot13";
+            }
+
+            else
+            {
+                displayedLetters[0] = atbashletters[0];
+                whatUsed = "atbash";
+            }
+        }
     }
 
     void Challenge()
@@ -552,6 +672,8 @@ public class moduleScript : MonoBehaviour {
 
     void MakeClue()
     {
+        UpdateNumbers();
+
         if (stageNum > 0)
         {
             letters.text = letters.text + " ";
@@ -561,16 +683,94 @@ public class moduleScript : MonoBehaviour {
                 whatUsed = "nothing";
             }
 
-            else if (Info.GetSolvedModuleNames().Count % 2 == 0)
+            else if (firstRule[1] == 0)
             {
-                displayedLetters[stageNum] = rot13letters[stageNum];
-                whatUsed = "rot13";
+                if (ruleAmounts[firstRule[0]] % 2 == 0)
+                {
+                    displayedLetters[stageNum] = rot13letters[stageNum];
+                    whatUsed = "rot13";
+                }
+
+                else
+                {
+                    displayedLetters[stageNum] = atbashletters[stageNum];
+                    whatUsed = "atbash";
+                }
+            }
+
+            else if (firstRule[1] == 1)
+            {
+                if (ruleAmounts[firstRule[0]] % 2 == 1)
+                {
+                    displayedLetters[stageNum] = rot13letters[stageNum];
+                    whatUsed = "rot13";
+                }
+
+                else
+                {
+                    displayedLetters[stageNum] = atbashletters[stageNum];
+                    whatUsed = "atbash";
+                }
+            }
+
+            else if (firstRule[1] == 2)
+            {
+                if (primes.Contains(ruleAmounts[firstRule[0]]))
+                {
+                    displayedLetters[stageNum] = rot13letters[stageNum];
+                    whatUsed = "rot13";
+                }
+
+                else
+                {
+                    displayedLetters[stageNum] = atbashletters[stageNum];
+                    whatUsed = "atbash";
+                }
+            }
+
+            else if (firstRule[1] == 3)
+            {
+                if (!primes.Contains(ruleAmounts[firstRule[0]]))
+                {
+                    displayedLetters[stageNum] = rot13letters[stageNum];
+                    whatUsed = "rot13";
+                }
+
+                else
+                {
+                    displayedLetters[stageNum] = atbashletters[stageNum];
+                    whatUsed = "atbash";
+                }
+            }
+
+            else if (firstRule[1] == 4)
+            {
+                if (ruleAmounts[firstRule[0]] % 3 == 0)
+                {
+                    displayedLetters[stageNum] = rot13letters[stageNum];
+                    whatUsed = "rot13";
+                }
+
+                else
+                {
+                    displayedLetters[stageNum] = atbashletters[stageNum];
+                    whatUsed = "atbash";
+                }
             }
 
             else
             {
-                displayedLetters[stageNum] = atbashletters[stageNum];
-                whatUsed = "atbash";
+                if (ruleAmounts[firstRule[0]] % 3 != 0)
+                {
+                    displayedLetters[stageNum] = rot13letters[stageNum];
+                    whatUsed = "rot13";
+                }
+
+                else
+                {
+                    displayedLetters[stageNum] = atbashletters[stageNum];
+                    whatUsed = "atbash";
+                }
             }
         }
 
@@ -905,5 +1105,49 @@ public class moduleScript : MonoBehaviour {
                 Audio.PlaySoundAtTransform(orinamiSounds[soundNum], ActualModule.transform);
             }
         }
+    }
+
+    void UpdateNumbers()
+    {
+        for (int i = 0; i < 6; i++)
+        {
+            ruleAmounts[i] = 0;
+            foreach (var twoFactor in Info.GetTwoFactorCodes())
+            {
+                if (i == 0)
+                {
+                    ruleAmounts[i] += twoFactor % 10;
+                }
+
+                else if (i == 1)
+                {
+                    ruleAmounts[i] += twoFactor / 10 % 10;
+                }
+
+                else if (i == 2)
+                {
+                    ruleAmounts[i] += twoFactor / 100 % 10;
+                }
+
+                else if (i == 3)
+                {
+                    ruleAmounts[i] += twoFactor / 1000 % 10;
+                }
+
+                else if (i == 4)
+                {
+                    ruleAmounts[i] += twoFactor / 10000 % 10;
+                }
+
+                else
+                {
+                    ruleAmounts[i] += twoFactor / 100000;
+                }
+            }
+        }
+
+        ruleAmounts[6] = Info.GetSolvedModuleNames().Count;
+        ruleAmounts[7] = Info.GetSolvableModuleNames().Count - Info.GetSolvedModuleNames().Count;
+        ruleAmounts[8] = Info.GetStrikes();
     }
 }
