@@ -42,7 +42,7 @@ public class moduleScript : MonoBehaviour {
                                           "souvenir", "superlogic", "tennis", "yahtzee", "zoo" };
     private string[] question4Answers = { "blind", "boolean", "factory", "polyhedral", "scrambler", "usa" };
     private string[] question5Answers = { "code", "coffeebucks", "listening", "safe", "samples", "kudosudoku" };
-    private string[] question6Answers = { "colored", "discolored", "divided", "mystic", "uncolored", "button" };
+    private string[] question6Answers = { "colored", "discolored", "divided", "mystic", "uncolored", "button", "varicolored" };
     private string[] question7Answers = { "determinants", "edgework", "filibuster", "knob", "math", "tetris" };
     private string[] question8Answers = { "ac", "hdmi", "pcmcia", "usb", "vga" };
     private string[] question9Answers = { "bob", "car", "clr", "frk", "frq", "ind", "msa", "nsa", "sig", "snd", "trn" };
@@ -74,7 +74,7 @@ public class moduleScript : MonoBehaviour {
                                           "rapid", "logical", "logic", "lounge", "sequence", "sean", "placement", "plumbing", "chords", "cheryl", "jade", "password",
                                           "pat", "ind", "instructions", "india", "quebec", "qualities", "quintuples", "balloon", "battery", "papa", "potion", "ashley", "accumulation", "algebra",
                                           "semaphore", "determinants", "delta", "looped", "master", "poodle", "rashes", "recall", "rescue", "rusted", "teased", "braintenance", "bravo",
-                                          "detonession", "indicitis", "juliett", "jaundry", "jukepox", "jukepox", "mike", "quackgrounds", "tetrinus", "widgeting", "wires", "zoo", "zooties",
+                                          "detonession", "indicitis", "juliett", "jaundry", "jukepox", "jukepox", "quackgrounds", "tetrinus", "widgeting", "wires", "zoo", "zooties",
                                           "alfa", "caller", "astrology", "jacob", "ticket", "tim", "retirement", "seated", "secure", "sedate", "stream", "stepladder", "study", "taylor", "tamers", "aluga",
                                           "asteran", "caadarim", "button", "buhar", "clr", "clondar", "lasers", "lanaluff", "lamp", "magmy", "memory", "melbor", "moonstone", "mountoise", "mystic", "myrchat",
                                           "percy", "perplexing", "pouse", "verticode", "vellarim", "modbus", "spinning", "spaghetti", "crackbox", "cryptography", "hotel", "hogwarts" };
@@ -87,7 +87,7 @@ public class moduleScript : MonoBehaviour {
                                           "rapid", "logical", "logic", "lounge", "sequence", "sean", "placement", "plumbing", "chords", "cheryl", "jacob", "password",
                                           "pat", "ind", "instructions", "india", "quebec", "qualities", "quintuples", "balloon", "papa", "potion", "astrology", "ac", "alfa", "semaphore",
                                           "determinants", "delta", "looped", "master", "poodle", "rashes", "recall", "rudest", "teased", "braintenance", "bravo", "detonession",
-                                          "indicitis", "jaundry", "jukebox", "jukepox", "mike", "quackgrounds", "tetrinus", "widgeting", "wires", "zoo", "zooties", "algebra", "caller",
+                                          "indicitis", "jaundry", "jukebox", "jukepox", "quackgrounds", "tetrinus", "widgeting", "wires", "zoo", "zooties", "algebra", "caller",
                                           "ashley", "ticket", "tim", "retirement", "seated", "stream", "stepladder", "study", "taylor", "tamers", "aluga", "asteran", "caadarim", "button", "buhar", "clr",
                                           "clondar", "lamp", "lanaluff", "lasers", "magmy", "memory", "melbor", "moonstone", "mountoise", "myrchat", "mystic", "perplexing", "percy", "pouse", "verticode",
                                           "vellarim", "modbus", "spinning", "spaghetti", "crackbox", "cryptography", "hotel", "hogwarts" };
@@ -102,7 +102,8 @@ public class moduleScript : MonoBehaviour {
                                           "looped", "master", "poodle", "poker", "polyhedral", "rashes", "rapid", "radiator", "tennis", "tetris", "braintenance", "broken", "bravo",
                                           "detonession", "determinants", "delta", "indicitis", "jaundry", "jacob", "juliett", "jukebox", "legomania", "quackgrounds", "tetrinus", "whiskey", "zulu", "car",
                                           "catchphrase", "recall", "seated", "aluga", "alfa", "astrology", "caadarim", "docsplode", "flaurim", "lanaluff", "lamp", "magmy", "ukkens",
-                                          "uncolored", "vga", "victor", "zapra", "moonstone", "modbus", "functions", "scripting", "factory", "hexamaze", "hunting", "hdmi", "hrv", "hall" };
+                                          "uncolored", "vga", "victor", "zapra", "moonstone", "modbus", "functions", "scripting", "factory", "hexamaze", "hunting", "hdmi", "hrv", "hall", "mike",
+                                          "varicolored" };
 
     // 96 possible first answers.
 
@@ -261,11 +262,9 @@ public class moduleScript : MonoBehaviour {
         };
 
         // Start of module generation
-
-        // Edit the number below this comment when changing the possibleFirstAnswers.
+        
         answers[0] = possibleFirstAnswers[Random.Range(0, possibleFirstAnswers.Length)];
-
-        // Edit the number below this comment when changing the possibleSecondAnswers.
+        
         for (int i = 0; i < possibleSecondAnswers.Length; i++)
         {
             if (possibleSecondAnswers[i].Substring(0, 1) == answers[0].Substring(0, 1) && answers[0] != possibleSecondAnswers[i])
@@ -283,8 +282,7 @@ public class moduleScript : MonoBehaviour {
         }
 
         counter = 0;
-
-        // Edit the number below this comment when changing the possibleFinalAnswers
+        
         for (int i = 0; i < possibleFinalAnswers.Length; i++)
         {
             if (possibleFinalAnswers[i].Substring(0, 2) == answers[1].Substring(0, 2) && answers[0] != possibleFinalAnswers[i] && answers[1] != possibleFinalAnswers[i])
