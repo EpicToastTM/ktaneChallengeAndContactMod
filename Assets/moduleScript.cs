@@ -49,7 +49,7 @@ public class moduleScript : MonoBehaviour {
     private string[] question10Answers = { "bitmaps", "boggle", "fizzbuzz", "friendship", "instructions", "mahjong", "radiator" };
     private string[] question11Answers = { "broken", "complicated", "logical", "masher", "rapid", "sequence", "spinning", "square", "the" };
     private string[] question12Answers = { "complicated", "perplexing", "placement", "sequence", "skinny", "spaghetti", "the" };
-    private string[] question13Answers = { "cooking", "countdown", "crackbox", "fizzbuzz", "functions", "gridlock", "hunting", "instructions", "kudosudoku", "logic", "modbus", "modulo", "plumbing", "rhythms", "scripting", "sink", "skyrim", "synonyms", "zoo" };
+    private string[] question13Answers = { "cooking", "countdown", "crackbox", "fizzbuzz", "functions", "gridlock", "hunting", "instructions", "kudosudoku", "logic", "modbus", "modulo", "plumbing", "rhythms", "scripting", "sink", "skyrim", "synonyms", "zoni", "zoo" };
     private string[] question14Answers = { "chords", "jukebox", "keys", "qualities", "rhythms", "samples", "sings" };
     private string[] question15Answers = { "adam", "ashley", "bob", "cheryl", "dave", "gary", "george", "jacob", "jade", "jessica", "mike", "pat", "sally", "sam", "sean", "simon", "taylor", "tim", "tom", "victor" };
     private string[] question16Answers = { "ballroom", "conservatory", "hall", "kitchen", "library", "lounge", "study" };
@@ -77,7 +77,7 @@ public class moduleScript : MonoBehaviour {
                                           "detonession", "indicitis", "juliett", "jaundry", "jukepox", "jukepox", "quackgrounds", "tetrinus", "widgeting", "wires", "zoo", "zooties",
                                           "alfa", "caller", "astrology", "jacob", "ticket", "tim", "retirement", "seated", "secure", "sedate", "stream", "stepladder", "study", "taylor", "tamers", "aluga",
                                           "asteran", "caadarim", "button", "buhar", "clr", "clondar", "lasers", "lanaluff", "lamp", "magmy", "memory", "melbor", "moonstone", "mountoise", "mystic", "myrchat",
-                                          "percy", "perplexing", "pouse", "verticode", "vellarim", "modbus", "spinning", "spaghetti", "crackbox", "cryptography", "hotel", "hogwarts" };
+                                          "percy", "perplexing", "pouse", "verticode", "vellarim", "modbus", "spinning", "spaghetti", "crackbox", "cryptography", "hotel", "hogwarts", "zoni" };
     // 145 possible final answers.
     
     private string[] possibleSecondAnswers = { "keypad", "keys", "blockbusters", "blind", "coordinates", "code", "colored", "complicated", "cooking",
@@ -90,7 +90,7 @@ public class moduleScript : MonoBehaviour {
                                           "indicitis", "jaundry", "jukebox", "jukepox", "quackgrounds", "tetrinus", "widgeting", "wires", "zoo", "zooties", "algebra", "caller",
                                           "ashley", "ticket", "tim", "retirement", "seated", "stream", "stepladder", "study", "taylor", "tamers", "aluga", "asteran", "caadarim", "button", "buhar", "clr",
                                           "clondar", "lamp", "lanaluff", "lasers", "magmy", "memory", "melbor", "moonstone", "mountoise", "myrchat", "mystic", "perplexing", "percy", "pouse", "verticode",
-                                          "vellarim", "modbus", "spinning", "spaghetti", "crackbox", "cryptography", "hotel", "hogwarts" };
+                                          "vellarim", "modbus", "spinning", "spaghetti", "crackbox", "cryptography", "hotel", "hogwarts", "zoni" };
 
     // 133 possible second answers.
 
@@ -103,7 +103,7 @@ public class moduleScript : MonoBehaviour {
                                           "detonession", "determinants", "delta", "indicitis", "jaundry", "jacob", "juliett", "jukebox", "legomania", "quackgrounds", "tetrinus", "whiskey", "zulu", "car",
                                           "catchphrase", "recall", "seated", "aluga", "alfa", "astrology", "caadarim", "docsplode", "flaurim", "lanaluff", "lamp", "magmy", "ukkens",
                                           "uncolored", "vga", "victor", "zapra", "moonstone", "modbus", "functions", "scripting", "factory", "hexamaze", "hunting", "hdmi", "hrv", "hall", "mike",
-                                          "varicolored" };
+                                          "varicolored", "zoni", "zoo", "zooties" };
 
     // 96 possible first answers.
 
@@ -122,8 +122,8 @@ public class moduleScript : MonoBehaviour {
 
     private bool wasSolutionCorrect = false;
 
-    private string[] rot13letters = { "des", "pac", "ito" };
-    private string[] atbashletters = { "o", "o", "f" };
+    private string[] firstCipherLetters = { "des", "pac", "ito" };
+    private string[] secondCipherLetters = { "o", "o", "f" };
     private string whatUsed = "";
 
     private string[] displayedLetters = { "", "", "" };
@@ -152,6 +152,7 @@ public class moduleScript : MonoBehaviour {
     private int[] unicornRule = { 0, 0 }; // Holds the unicorn rule. (Unicorn rule will always involve the lit BOB indicator.)
     // First #: 0: batteries, 1: battery holders, 2: indicators, 3: ports, 4: port plates, 5: two factors. The second number is what it must be equal to.
     private int firstStageRule = 6; // Basically just unicornRule[0], but with Info.GetModuleNames.Count().
+    private string[] cipherNames = { "rot13", "atbash" }; 
 
     private readonly int[] primes = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103,
     107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 281, 283, 293, 307, 311, 313,
@@ -327,20 +328,23 @@ public class moduleScript : MonoBehaviour {
         {
             displayedLetters[i] = "";
         }
-        
+
         for (int i = 0; i < 3; i++)
         {
             for (int x = 0; x < 26; x++)
             {
                 if (alphabet[x] == answers[2].Substring(i, 1))
                 {
-                    letterNumbers[i] = x + 1;
+                    letterNumbers[i] = x;
+                    break;
                 }
             }
 
-                rot13letters[i] = alphabet[(letterNumbers[i] + 12) % 26];
-                atbashletters[i] = alphabet[26 - letterNumbers[i]];
+            firstCipherLetters[i] = alphabet[(letterNumbers[i] + 13) % 26];
+            secondCipherLetters[i] = alphabet[25 - letterNumbers[i]];
         }
+
+        SetUpRuleseed();
 
         for (int i = 0; i < 26; i++)
         {
@@ -366,7 +370,6 @@ public class moduleScript : MonoBehaviour {
             }
         }
 
-        SetUpRuleseed();
         MakeClue();
     }
 
@@ -395,6 +398,8 @@ public class moduleScript : MonoBehaviour {
             unicornRule[1] = rnd.Next(5);
 
             firstStageRule = rnd.Next(7);
+
+            Debug.LogFormat("[Challenge & Contact #{0}] This module is using ruleseed, seed #{1}.", _moduleID, rnd.Seed);
         }
         
         if (Info.GetOnIndicators().Contains("BOB") && unicornAmounts[unicornRule[0]] == unicornRule[1])
@@ -410,14 +415,14 @@ public class moduleScript : MonoBehaviour {
         {
             if (unicornAmounts[firstStageRule] % 2 == 0)
             {
-                displayedLetters[0] = rot13letters[0];
-                whatUsed = "rot13";
+                displayedLetters[0] = firstCipherLetters[0];
+                whatUsed = cipherNames[0];
             }
 
             else
             {
-                displayedLetters[0] = atbashletters[0];
-                whatUsed = "atbash";
+                displayedLetters[0] = secondCipherLetters[0];
+                whatUsed = cipherNames[1];
             }
         }
 
@@ -425,14 +430,14 @@ public class moduleScript : MonoBehaviour {
         {
             if (unicornAmounts[firstStageRule] % 2 == 1)
             {
-                displayedLetters[0] = rot13letters[0];
-                whatUsed = "rot13";
+                displayedLetters[0] = firstCipherLetters[0];
+                whatUsed = cipherNames[0];
             }
 
             else
             {
-                displayedLetters[0] = atbashletters[0];
-                whatUsed = "atbash";
+                displayedLetters[0] = secondCipherLetters[0];
+                whatUsed = cipherNames[1];
             }
         }
 
@@ -440,14 +445,14 @@ public class moduleScript : MonoBehaviour {
         {
             if (primes.Contains(unicornAmounts[firstStageRule]))
             {
-                displayedLetters[0] = rot13letters[0];
-                whatUsed = "rot13";
+                displayedLetters[0] = firstCipherLetters[0];
+                whatUsed = cipherNames[0];
             }
 
             else
             {
-                displayedLetters[0] = atbashletters[0];
-                whatUsed = "atbash";
+                displayedLetters[0] = secondCipherLetters[0];
+                whatUsed = cipherNames[1];
             }
         }
 
@@ -455,14 +460,14 @@ public class moduleScript : MonoBehaviour {
         {
             if (!primes.Contains(unicornAmounts[firstStageRule]))
             {
-                displayedLetters[0] = rot13letters[0];
-                whatUsed = "rot13";
+                displayedLetters[0] = firstCipherLetters[0];
+                whatUsed = cipherNames[0];
             }
 
             else
             {
-                displayedLetters[0] = atbashletters[0];
-                whatUsed = "atbash";
+                displayedLetters[0] = secondCipherLetters[0];
+                whatUsed = cipherNames[1];
             }
         }
 
@@ -470,14 +475,14 @@ public class moduleScript : MonoBehaviour {
         {
             if (unicornAmounts[firstStageRule] % 3 == 0)
             {
-                displayedLetters[0] = rot13letters[0];
-                whatUsed = "rot13";
+                displayedLetters[0] = firstCipherLetters[0];
+                whatUsed = cipherNames[0];
             }
 
             else
             {
-                displayedLetters[0] = atbashletters[0];
-                whatUsed = "atbash";
+                displayedLetters[0] = secondCipherLetters[0];
+                whatUsed = cipherNames[1];
             }
         }
 
@@ -485,14 +490,14 @@ public class moduleScript : MonoBehaviour {
         {
             if (unicornAmounts[firstStageRule] % 3 != 0)
             {
-                displayedLetters[0] = rot13letters[0];
-                whatUsed = "rot13";
+                displayedLetters[0] = firstCipherLetters[0];
+                whatUsed = cipherNames[0];
             }
 
             else
             {
-                displayedLetters[0] = atbashletters[0];
-                whatUsed = "atbash";
+                displayedLetters[0] = secondCipherLetters[0];
+                whatUsed = cipherNames[1];
             }
         }
     }
@@ -685,14 +690,14 @@ public class moduleScript : MonoBehaviour {
             {
                 if (ruleAmounts[firstRule[0]] % 2 == 0)
                 {
-                    displayedLetters[stageNum] = rot13letters[stageNum];
-                    whatUsed = "rot13";
+                    displayedLetters[stageNum] = firstCipherLetters[stageNum];
+                    whatUsed = cipherNames[0];
                 }
 
                 else
                 {
-                    displayedLetters[stageNum] = atbashletters[stageNum];
-                    whatUsed = "atbash";
+                    displayedLetters[stageNum] = secondCipherLetters[stageNum];
+                    whatUsed = cipherNames[1];
                 }
             }
 
@@ -700,14 +705,14 @@ public class moduleScript : MonoBehaviour {
             {
                 if (ruleAmounts[firstRule[0]] % 2 == 1)
                 {
-                    displayedLetters[stageNum] = rot13letters[stageNum];
-                    whatUsed = "rot13";
+                    displayedLetters[stageNum] = firstCipherLetters[stageNum];
+                    whatUsed = cipherNames[0];
                 }
 
                 else
                 {
-                    displayedLetters[stageNum] = atbashletters[stageNum];
-                    whatUsed = "atbash";
+                    displayedLetters[stageNum] = secondCipherLetters[stageNum];
+                    whatUsed = cipherNames[1];
                 }
             }
 
@@ -715,14 +720,14 @@ public class moduleScript : MonoBehaviour {
             {
                 if (primes.Contains(ruleAmounts[firstRule[0]]))
                 {
-                    displayedLetters[stageNum] = rot13letters[stageNum];
-                    whatUsed = "rot13";
+                    displayedLetters[stageNum] = firstCipherLetters[stageNum];
+                    whatUsed = cipherNames[0];
                 }
 
                 else
                 {
-                    displayedLetters[stageNum] = atbashletters[stageNum];
-                    whatUsed = "atbash";
+                    displayedLetters[stageNum] = secondCipherLetters[stageNum];
+                    whatUsed = cipherNames[1];
                 }
             }
 
@@ -730,14 +735,14 @@ public class moduleScript : MonoBehaviour {
             {
                 if (!primes.Contains(ruleAmounts[firstRule[0]]))
                 {
-                    displayedLetters[stageNum] = rot13letters[stageNum];
-                    whatUsed = "rot13";
+                    displayedLetters[stageNum] = firstCipherLetters[stageNum];
+                    whatUsed = cipherNames[0];
                 }
 
                 else
                 {
-                    displayedLetters[stageNum] = atbashletters[stageNum];
-                    whatUsed = "atbash";
+                    displayedLetters[stageNum] = secondCipherLetters[stageNum];
+                    whatUsed = cipherNames[1];
                 }
             }
 
@@ -745,14 +750,14 @@ public class moduleScript : MonoBehaviour {
             {
                 if (ruleAmounts[firstRule[0]] % 3 == 0)
                 {
-                    displayedLetters[stageNum] = rot13letters[stageNum];
-                    whatUsed = "rot13";
+                    displayedLetters[stageNum] = firstCipherLetters[stageNum];
+                    whatUsed = cipherNames[0];
                 }
 
                 else
                 {
-                    displayedLetters[stageNum] = atbashletters[stageNum];
-                    whatUsed = "atbash";
+                    displayedLetters[stageNum] = secondCipherLetters[stageNum];
+                    whatUsed = cipherNames[1];
                 }
             }
 
@@ -760,14 +765,14 @@ public class moduleScript : MonoBehaviour {
             {
                 if (ruleAmounts[firstRule[0]] % 3 != 0)
                 {
-                    displayedLetters[stageNum] = rot13letters[stageNum];
-                    whatUsed = "rot13";
+                    displayedLetters[stageNum] = firstCipherLetters[stageNum];
+                    whatUsed = cipherNames[0];
                 }
 
                 else
                 {
-                    displayedLetters[stageNum] = atbashletters[stageNum];
-                    whatUsed = "atbash";
+                    displayedLetters[stageNum] = secondCipherLetters[stageNum];
+                    whatUsed = cipherNames[1];
                 }
             }
         }
