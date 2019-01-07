@@ -87,7 +87,7 @@ public class moduleScript : MonoBehaviour {
                                           "rapid", "logical", "logic", "lounge", "sequence", "sean", "placement", "plumbing", "chords", "cheryl", "jacob", "password",
                                           "pat", "ind", "instructions", "india", "quebec", "qualities", "quintuples", "balloon", "papa", "potion", "astrology", "ac", "alfa", "semaphore",
                                           "determinants", "delta", "looped", "master", "poodle", "rashes", "recall", "rudest", "teased", "braintenance", "bravo", "detonession",
-                                          "indicitis", "jaundry", "jukebox", "jukepox", "quackgrounds", "tetrinus", "widgeting", "wires", "zoo", "zooties", "algebra", "caller",
+                                          "indicitis", "jaundry", "jukebox", "jukepox", "quackgrounds", "tetrinus", "widgeting", "wires", "zooties", "algebra", "caller",
                                           "ashley", "ticket", "tim", "retirement", "seated", "stream", "stepladder", "study", "taylor", "tamers", "aluga", "asteran", "caadarim", "button", "buhar", "clr",
                                           "clondar", "lamp", "lanaluff", "lasers", "magmy", "memory", "melbor", "moonstone", "mountoise", "myrchat", "mystic", "perplexing", "percy", "pouse", "verticode",
                                           "vellarim", "modbus", "spinning", "spaghetti", "crackbox", "cryptography", "hotel", "hogwarts", "zoni" };
@@ -99,11 +99,11 @@ public class moduleScript : MonoBehaviour {
                                           "knob", "pcmcia", "msa", "trn", "the", "rhythms", "kitchen", "study", "ind", "instructions", "india",
                                           "quebec", "qualities", "quintuples", "kudosudoku", "balloon", "battleship", "ballroom", "discolored",
                                           "papa", "potion", "stepladder", "adam", "semaphore", "sequence", "barely", "caller", "duster", "dave",
-                                          "looped", "master", "poodle", "poker", "polyhedral", "rashes", "rapid", "radiator", "tennis", "tetris", "braintenance", "broken", "bravo",
+                                          "looped", "master", "poodle", "poker", "polyhedrral", "rashes", "rapid", "radiator", "tennis", "tetris", "braintenance", "broken", "bravo",
                                           "detonession", "determinants", "delta", "indicitis", "jaundry", "jacob", "juliett", "jukebox", "legomania", "quackgrounds", "tetrinus", "whiskey", "zulu", "car",
-                                          "catchphrase", "recall", "seated", "aluga", "alfa", "astrology", "caadarim", "docsplode", "flaurim", "lanaluff", "lamp", "magmy", "ukkens",
+                                          "catchphrase", "seated", "aluga", "alfa", "astrology", "caadarim", "docsplode", "flaurim", "lanaluff", "lamp", "magmy", "ukkens",
                                           "uncolored", "vga", "victor", "zapra", "moonstone", "modbus", "functions", "scripting", "factory", "hexamaze", "hunting", "hdmi", "hrv", "hall", "mike",
-                                          "varicolored", "zoni", "zoo", "zooties" };
+                                          "varicolored", "zoni", "zooties" };
 
     // 96 possible first answers.
 
@@ -138,6 +138,7 @@ public class moduleScript : MonoBehaviour {
     private string[] TimwiCounts = { "timwiThree1", "timwiThree2", "timwiThree3", "timwiTwo1", "timwiTwo2", "timwiTwo3", "timwiOne1", "timwiOne2", "timwiOne3" };
     private string[] YabbaSounds = { "yabbaContact", "yabbaChallenge", "yabbaThree", "yabbaTwo", "yabbaOne" };
     private string[] orinamiSounds = { "orinamiContact", "orinamiChallenge", "orinamiThree", "orinamiTwo", "orinamiOne" };
+    private string[] weterSounds = { "weterContact", "weterChallenge", "weterThree", "weterTwo", "weterOne" };
 
     private int randomChallenge = 0;
     private int randomSound = 0;
@@ -796,7 +797,7 @@ public class moduleScript : MonoBehaviour {
 
         if (challenge.text == answers[stageNum])
         {
-            if (timer.text == "GO!")
+            if (timer.text != ":[")
             {
                 stageNum++;
 
@@ -819,7 +820,7 @@ public class moduleScript : MonoBehaviour {
             {
                 wasSolutionCorrect = false;
 
-                Debug.LogFormat("[Challenge & Contact #{0}] You submitted at the wrong time.", _moduleID);
+                Debug.LogFormat("[Challenge & Contact #{0}] You submitted too late.", _moduleID);
             }
         }
 
@@ -1071,6 +1072,11 @@ public class moduleScript : MonoBehaviour {
             {
                 Audio.PlaySoundAtTransform(orinamiSounds[0], ActualModule.transform);
             }
+
+            else if (randomSound == 5)
+            {
+                Audio.PlaySoundAtTransform(weterSounds[0], ActualModule.transform);
+            }
         }
 
         else
@@ -1106,6 +1112,11 @@ public class moduleScript : MonoBehaviour {
             else if (randomChallenge == 4)
             {
                 Audio.PlaySoundAtTransform(orinamiSounds[soundNum], ActualModule.transform);
+            }
+
+            else if (randomChallenge == 4)
+            {
+                Audio.PlaySoundAtTransform(weterSounds[soundNum], ActualModule.transform);
             }
         }
     }
