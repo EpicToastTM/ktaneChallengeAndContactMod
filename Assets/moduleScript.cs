@@ -36,20 +36,20 @@ public class moduleScript : MonoBehaviour {
     // There are 22 questions.
 
     private string[] question1Answers = { "keypad", "maze", "memory", "password", "wires" };
-    private string[] question2Answers = { "accumulation", "algebra", "blockbusters", "catchphrase", "coffeebucks", "countdown", "hieroglyphics", "lightspeed", "maintenance", "modulo", "poker",
-                                          "quintuples", "retirement", "skyrim", "snooker" };
+    private string[] question2Answers = { "accumulation", "algebra", "blockbusters", "catchphrase", "coffeebucks", "countdown", "hieroglyphics", "homophones", "lightspeed", "maintenance", "modulo", "poker",
+                                          "quintuples", "retirement", "skyrim", "snooker", "westeros" };
     private string[] question3Answers = { "battleship", "bitmaps", "braille", "coordinates", "friendship", "gridlock", "hexamaze", "hogwarts", "kudosudoku", "lasers", "mafia", "mahjong",
                                           "souvenir", "superlogic", "tennis", "yahtzee", "zoo" };
     private string[] question4Answers = { "blind", "boolean", "factory", "polyhedral", "scrambler", "usa" };
     private string[] question5Answers = { "code", "coffeebucks", "listening", "safe", "samples", "kudosudoku" };
-    private string[] question6Answers = { "colored", "discolored", "divided", "mystic", "uncolored", "button", "varicolored" };
+    private string[] question6Answers = { "colored", "decolored", "discolored", "divided", "mystic", "uncolored", "button", "varicolored" };
     private string[] question7Answers = { "determinants", "edgework", "filibuster", "knob", "math", "tetris" };
     private string[] question8Answers = { "ac", "hdmi", "pcmcia", "usb", "vga" };
     private string[] question9Answers = { "bob", "car", "clr", "frk", "frq", "ind", "msa", "nsa", "sig", "snd", "trn" };
     private string[] question10Answers = { "bitmaps", "boggle", "fizzbuzz", "friendship", "instructions", "mahjong", "radiator" };
     private string[] question11Answers = { "broken", "complicated", "logical", "masher", "rapid", "sequence", "spinning", "square", "the" };
     private string[] question12Answers = { "complicated", "perplexing", "placement", "sequence", "skinny", "spaghetti", "the" };
-    private string[] question13Answers = { "cooking", "countdown", "crackbox", "fizzbuzz", "functions", "gridlock", "hunting", "instructions", "kudosudoku", "logic", "modbus", "modulo", "plumbing", "rhythms", "scripting", "sink", "skyrim", "synonyms", "zoni", "zoo" };
+    private string[] question13Answers = { "cooking", "countdown", "fizzbuzz", "functions", "gridlock", "hunting", "instructions", "kudosudoku", "logic", "modbus", "modulo", "plumbing", "rhythms", "scripting", "sink", "skyrim", "synonyms", "zoni", "zoo" };
     private string[] question14Answers = { "chords", "jukebox", "keys", "qualities", "rhythms", "samples", "sings" };
     private string[] question15Answers = { "adam", "ashley", "bob", "cheryl", "dave", "gary", "george", "jacob", "jade", "jessica", "mike", "pat", "sally", "sam", "sean", "simon", "taylor", "tim", "tom", "victor" };
     private string[] question16Answers = { "ballroom", "conservatory", "hall", "kitchen", "library", "lounge", "study" };
@@ -77,7 +77,7 @@ public class moduleScript : MonoBehaviour {
                                           "detonession", "indicitis", "juliett", "jaundry", "jukepox", "jukepox", "quackgrounds", "tetrinus", "widgeting", "wires", "zoo", "zooties",
                                           "alfa", "caller", "astrology", "jacob", "ticket", "tim", "retirement", "seated", "secure", "sedate", "stream", "stepladder", "study", "taylor", "tamers", "aluga",
                                           "asteran", "caadarim", "button", "buhar", "clr", "clondar", "lasers", "lanaluff", "lamp", "magmy", "memory", "melbor", "moonstone", "mountoise", "mystic", "myrchat",
-                                          "percy", "perplexing", "pouse", "verticode", "vellarim", "modbus", "spinning", "spaghetti", "crackbox", "cryptography", "hotel", "hogwarts", "zoni" };
+                                          "percy", "perplexing", "pouse", "verticode", "vellarim", "modbus", "spinning", "spaghetti", "hotel", "hogwarts", "zoni", "decolored", "homophones" };
     // 145 possible final answers.
     
     private string[] possibleSecondAnswers = { "keypad", "keys", "blockbusters", "blind", "coordinates", "code", "colored", "complicated", "cooking",
@@ -90,20 +90,20 @@ public class moduleScript : MonoBehaviour {
                                           "indicitis", "jaundry", "jukebox", "jukepox", "quackgrounds", "tetrinus", "widgeting", "wires", "zooties", "algebra", "caller",
                                           "ashley", "ticket", "tim", "retirement", "seated", "stream", "stepladder", "study", "taylor", "tamers", "aluga", "asteran", "caadarim", "button", "buhar", "clr",
                                           "clondar", "lamp", "lanaluff", "lasers", "magmy", "memory", "melbor", "moonstone", "mountoise", "myrchat", "mystic", "perplexing", "percy", "pouse", "verticode",
-                                          "vellarim", "modbus", "spinning", "spaghetti", "crackbox", "cryptography", "hotel", "hogwarts", "zoni" };
+                                          "vellarim", "modbus", "spinning", "spaghetti", "hotel", "hogwarts", "zoni", "decolored", "homophones" };
 
     // 133 possible second answers.
 
     private string[] possibleFirstAnswers = { "coordinates", "code", "colored", "complicated", "cooking",
                                           "conservatory", "lightspeed", "listening", "library", "maintenance", "mafia", "math", "masher", "frk", "bob", "sig", "sink", "logical", "logic",
                                           "knob", "pcmcia", "msa", "trn", "the", "rhythms", "kitchen", "study", "ind", "instructions", "india",
-                                          "quebec", "qualities", "quintuples", "kudosudoku", "balloon", "battleship", "ballroom", "discolored",
+                                          "quebec", "qualities", "quintuples", "kudosudoku", "balloon", "battleship", "ballroom",
                                           "papa", "potion", "stepladder", "adam", "semaphore", "sequence", "barely", "caller", "duster", "dave",
                                           "looped", "master", "poodle", "poker", "polyhedrral", "rashes", "rapid", "radiator", "tennis", "tetris", "braintenance", "broken", "bravo",
                                           "detonession", "determinants", "delta", "indicitis", "jaundry", "jacob", "juliett", "jukebox", "legomania", "quackgrounds", "tetrinus", "whiskey", "zulu", "car",
                                           "catchphrase", "seated", "aluga", "alfa", "astrology", "caadarim", "docsplode", "flaurim", "lanaluff", "lamp", "magmy", "ukkens",
-                                          "uncolored", "vga", "victor", "zapra", "moonstone", "modbus", "functions", "scripting", "factory", "hexamaze", "hunting", "hdmi", "hrv", "hall", "mike",
-                                          "varicolored", "zoni", "zooties" };
+                                          "uncolored", "vga", "victor", "zapra", "moonstone", "modbus", "scripting", "factory", "hexamaze", "hunting", "hdmi", "hrv", "hall", "mike",
+                                          "varicolored", "zoni", "zooties", "cryptography", "decolored", "hotel", "hogwarts" };
 
     // 96 possible first answers.
 
@@ -181,7 +181,7 @@ public class moduleScript : MonoBehaviour {
     {
         counter = 0;
         otherCounter = 0;
-        randomChallenge = Random.Range(0, 5);
+        randomChallenge = Random.Range(0, 6);
 
         for (int i = 0; i < 43; i++)
         {
@@ -1042,7 +1042,7 @@ public class moduleScript : MonoBehaviour {
     {
         if (soundNum == 0)
         {
-            randomSound = Random.Range(0, 5);
+            randomSound = Random.Range(0, 6);
             if (randomSound == randomChallenge)
             {
                 randomSound = (randomSound + 1) % 3;
@@ -1114,7 +1114,7 @@ public class moduleScript : MonoBehaviour {
                 Audio.PlaySoundAtTransform(orinamiSounds[soundNum], ActualModule.transform);
             }
 
-            else if (randomChallenge == 4)
+            else if (randomChallenge == 5)
             {
                 Audio.PlaySoundAtTransform(weterSounds[soundNum], ActualModule.transform);
             }
