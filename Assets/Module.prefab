@@ -9103,7 +9103,7 @@ MonoBehaviour:
   trumpets:
   - {fileID: 114814734080138080}
   - {fileID: 114635174753023002}
-  TwitchHelpMessage: ther than letters are ignored.it a word. Words containing anything
+  TwitchHelpMessage: Use !{0} submit [word] to submit a word. Words containing anything
     other than letters are ignored.
 --- !u!114 &114726297831305710
 MonoBehaviour:
