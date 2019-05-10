@@ -78,7 +78,7 @@ public class moduleScript : MonoBehaviour {
                                           "caller", "astrology", "jacob", "ticket", "tim", "retirement", "seated", "secure", "sedate", "stream", "stepladder", "study", "taylor", "tamers", "aluga",
                                           "asteran", "caadarim", "button", "buhar", "clr", "clondar", "lasers", "lanaluff", "lamp", "magmy", "memory", "melbor", "moonstone", "mountoise", "mystic", "myrchat",
                                           "percy", "perplexing", "pouse", "verticode", "vellarim", "spinning", "spaghetti", "hotel", "hogwarts", "zoni", "decolored", "homophones", "module",
-                                          "wingdings", "modulo", "draw", "aa", "alpha", "seven" };
+                                          "wingdings", "modulo", "aa", "alpha", "seven", "alfa" };
     // 145 possible final answers.
     
     private string[] possibleSecondAnswers = { "keypad", "keys", "blockbusters", "blind", "coordinates", "code", "colored", "complicated", "cooking",
@@ -91,7 +91,7 @@ public class moduleScript : MonoBehaviour {
                                           "indicitis", "jaundry", "jukebox", "jukepox", "quackgrounds", "tetrinus", "widgeting", "wires", "zooties", "algebra", "caller",
                                           "ashley", "ticket", "tim", "retirement", "seated", "stream", "stepladder", "study", "taylor", "tamers", "aluga", "asteran", "caadarim", "button", "buhar", "clr",
                                           "clondar", "lamp", "lanaluff", "lasers", "magmy", "memory", "melbor", "moonstone", "mountoise", "myrchat", "mystic", "perplexing", "percy", "pouse", "verticode",
-                                          "vellarim", "spinning", "spaghetti", "hotel", "hogwarts", "zoni", "decolored", "homophones", "module", "wingdings", "modulo", "draw", "aa", "alpha" };
+                                          "vellarim", "spinning", "spaghetti", "hotel", "hogwarts", "zoni", "decolored", "homophones", "module", "wingdings", "modulo", "aa", "alpha", "alfa" };
 
     // 133 possible second answers.
 
@@ -104,7 +104,7 @@ public class moduleScript : MonoBehaviour {
                                           "detonession", "determinants", "delta", "indicitis", "jaundry", "jacob", "juliett", "jukebox", "legomania", "quackgrounds", "tetrinus", "whiskey", "zulu", "car",
                                           "catchphrase", "seated", "aluga", "astrology", "caadarim", "docsplode", "flaurim", "lanaluff", "lamp", "magmy", "ukkens",
                                           "uncolored", "vga", "victor", "zapra", "moonstone", "scripting", "factory", "hexamaze", "hunting", "hdmi", "hrv", "hall", "mike",
-                                          "varicolored", "zoni", "zooties", "cryptography", "decolored", "hotel", "hogwarts", "module", "wingdings", "wires", "widgeting", "modulo", "aa" };
+                                          "varicolored", "zoni", "zooties", "cryptography", "decolored", "hotel", "hogwarts", "module", "wingdings", "wires", "widgeting", "modulo", "aa", "alfa", "draw" };
 
     // 96 possible first answers.
 
