@@ -5,7 +5,8 @@ using UnityEngine;
 using System.Linq;
 using KModkit;
 
-public class moduleScript : MonoBehaviour {
+public class moduleScript : MonoBehaviour
+{
 
     public KMAudio Audio;
     public KMBombModule Module;
@@ -18,6 +19,7 @@ public class moduleScript : MonoBehaviour {
     public GameObject ActualModule;
     public KMSelectable[] trumpets;
     public string TwitchHelpMessage = "Use !{0} submit [word] to submit a word. Words containing anything other than letters are ignored.";
+    public bool debug = false;
 
     private static int _moduleIDCounter = 1;
     private int _moduleID = 0;
@@ -74,13 +76,13 @@ public class moduleScript : MonoBehaviour {
                                           "rapid", "logical", "logic", "lounge", "sequence", "sean", "placement", "plumbing", "chords", "cheryl", "jade", "password",
                                           "pat", "ind", "instructions", "india", "quebec", "qualities", "quintuples", "balloon", "battery", "papa", "potion", "ashley", "accumulation", "algebra",
                                           "semaphore", "determinants", "delta", "looped", "master", "poodle", "rashes", "recall", "rescue", "rusted", "teased", "braintenance", "bravo",
-                                          "detonession", "indicitis", "juliett", "jaundry", "jukepox", "jukepox", "quackgrounds", "tetrinus", "widgeting", "wires", "zoo", "zooties",
+                                          "detonession", "indicitis", "juliett", "jaundry", "jukebox", "quackgrounds", "tetrinus", "widgeting", "wires", "zoo", "zooties",
                                           "caller", "astrology", "jacob", "ticket", "tim", "retirement", "seated", "secure", "sedate", "stream", "stepladder", "study", "taylor", "tamers", "aluga",
                                           "asteran", "caadarim", "button", "buhar", "clr", "clondar", "lasers", "lanaluff", "lamp", "magmy", "memory", "melbor", "moonstone", "mountoise", "mystic", "myrchat",
                                           "percy", "perplexing", "pouse", "verticode", "vellarim", "spinning", "spaghetti", "hotel", "hogwarts", "zoni", "decolored", "homophones", "module",
-                                          "wingdings", "modulo", "aa", "alpha", "seven", "alfa" };
+                                          "wingdings", "modulo", "alpha", "seven", "alfa" };
     // 145 possible final answers.
-    
+
     private string[] possibleSecondAnswers = { "keypad", "keys", "blockbusters", "blind", "coordinates", "code", "colored", "complicated", "cooking",
                                           "conservatory", "catchphrase", "car", "snooker", "snd", "lightspeed", "listening", "library", "maintenance", "mafia", "maze", "math", "masher",
                                           "poker", "polyhedral", "tennis", "tetris", "braille", "broken", "battleship", "ballroom", "friendship", "frk", "boolean", "bob", "boggle",
@@ -88,10 +90,10 @@ public class moduleScript : MonoBehaviour {
                                           "rapid", "logical", "logic", "lounge", "sequence", "sean", "placement", "plumbing", "chords", "cheryl", "jacob", "password",
                                           "pat", "ind", "instructions", "india", "quebec", "qualities", "quintuples", "balloon", "papa", "potion", "astrology", "ac", "semaphore",
                                           "determinants", "delta", "looped", "master", "poodle", "rashes", "recall", "rudest", "teased", "braintenance", "bravo", "detonession",
-                                          "indicitis", "jaundry", "jukebox", "jukepox", "quackgrounds", "tetrinus", "widgeting", "wires", "zooties", "algebra", "caller",
+                                          "indicitis", "jaundry", "jukebox", "quackgrounds", "tetrinus", "widgeting", "wires", "zooties", "algebra", "caller",
                                           "ashley", "ticket", "tim", "retirement", "seated", "stream", "stepladder", "study", "taylor", "tamers", "aluga", "asteran", "caadarim", "button", "buhar", "clr",
                                           "clondar", "lamp", "lanaluff", "lasers", "magmy", "memory", "melbor", "moonstone", "mountoise", "myrchat", "mystic", "perplexing", "percy", "pouse", "verticode",
-                                          "vellarim", "spinning", "spaghetti", "hotel", "hogwarts", "zoni", "decolored", "homophones", "module", "wingdings", "modulo", "aa", "alpha", "alfa" };
+                                          "vellarim", "spinning", "spaghetti", "hotel", "hogwarts", "zoni", "decolored", "homophones", "module", "wingdings", "modulo", "alpha", "alfa" };
 
     // 133 possible second answers.
 
@@ -112,7 +114,7 @@ public class moduleScript : MonoBehaviour {
     private int alphabetPos = 0;
     private string[] keyLetters = { "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "" };
     private string word = "";
-    
+
     private float seconds = 0;
     private bool flipped = false;
 
@@ -154,7 +156,7 @@ public class moduleScript : MonoBehaviour {
     private int[] unicornRule = { 0, 0 }; // Holds the unicorn rule. (Unicorn rule will always involve the lit BOB indicator.)
     // First #: 0: batteries, 1: battery holders, 2: indicators, 3: ports, 4: port plates, 5: two factors. The second number is what it must be equal to.
     private int firstStageRule = 6; // Basically just unicornRule[0], but with Info.GetModuleNames.Count().
-    private string[] cipherNames = { "rot13", "atbash" }; 
+    private string[] cipherNames = { "rot13", "atbash" };
 
     private readonly int[] primes = { 2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, 37, 41, 43, 47, 53, 59, 61, 67, 71, 73, 79, 83, 89, 97, 101, 103,
     107, 109, 113, 127, 131, 137, 139, 149, 151, 157, 163, 167, 173, 179, 181, 191, 193, 197, 199, 211, 223, 227, 281, 283, 293, 307, 311, 313,
@@ -165,12 +167,14 @@ public class moduleScript : MonoBehaviour {
 
     int[] ruleAmounts = { 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-    void Start() {
+    void Start()
+    {
         _moduleID = _moduleIDCounter++;
         Module.OnActivate += Activate;
     }
 
-    void Activate() {
+    void Activate()
+    {
         lightsOn = true;
 
         letters.text = "";
@@ -265,88 +269,117 @@ public class moduleScript : MonoBehaviour {
         };
 
         // Start of module generation
-        
-        answers[0] = possibleFirstAnswers[Random.Range(0, possibleFirstAnswers.Length)];
-        
-        for (int i = 0; i < possibleSecondAnswers.Length; i++)
+        try
         {
-            if (possibleSecondAnswers[i].Substring(0, 1) == answers[0].Substring(0, 1) && answers[0] != possibleSecondAnswers[i])
+            if (debug) throw new System.Exception();
+            answers[0] = possibleFirstAnswers[Random.Range(0, possibleFirstAnswers.Length)];
+
+            for (int i = 0; i < possibleSecondAnswers.Length; i++)
             {
-                slightlyMorePossibleAnswers[counter] = possibleSecondAnswers[i];
-                counter++;
+                if (possibleSecondAnswers[i].Substring(0, 1) == answers[0].Substring(0, 1) && answers[0] != possibleSecondAnswers[i])
+                {
+                    slightlyMorePossibleAnswers[counter] = possibleSecondAnswers[i];
+                    counter++;
+                }
             }
-        }
 
-        answers[1] = slightlyMorePossibleAnswers[Random.Range(0, counter)];
+            answers[1] = slightlyMorePossibleAnswers[Random.Range(0, counter)];
 
-        for (int i = 0; i < counter; i++)
-        {
-            slightlyMorePossibleAnswers[i] = "";
-        }
-
-        counter = 0;
-        
-        for (int i = 0; i < possibleFinalAnswers.Length; i++)
-        {
-            if (possibleFinalAnswers[i].Substring(0, 2) == answers[1].Substring(0, 2) && answers[0] != possibleFinalAnswers[i] && answers[1] != possibleFinalAnswers[i])
-            {
-                slightlyMorePossibleAnswers[counter] = possibleFinalAnswers[i];
-                counter++;
-            }
-        }
-
-        answers[2] = slightlyMorePossibleAnswers[Random.Range(0, counter)];
-
-        for (int x = 0; x < 3; x++)
-        {
             for (int i = 0; i < counter; i++)
             {
                 slightlyMorePossibleAnswers[i] = "";
             }
 
-            CheckIfContains(x);
             counter = 0;
 
-            for (int i = 0; i < 22; i++)
+            for (int i = 0; i < possibleFinalAnswers.Length; i++)
             {
-                if (containChecker[i])
+                if (possibleFinalAnswers[i].Substring(0, 2) == answers[1].Substring(0, 2) && answers[0] != possibleFinalAnswers[i] && answers[1] != possibleFinalAnswers[i])
                 {
-                    slightlyMorePossibleAnswers[counter] = clues[i];
+                    slightlyMorePossibleAnswers[counter] = possibleFinalAnswers[i];
                     counter++;
                 }
             }
 
-            otherCounter = Random.Range(0, counter);
-            usedClues[x] = slightlyMorePossibleAnswers[otherCounter];
-        }
+            answers[2] = slightlyMorePossibleAnswers[Random.Range(0, counter)];
 
-        Debug.LogFormat("[Challenge & Contact #{0}] The words are {1}, {2}, and {3}.", _moduleID, answers[0], answers[1], answers[2]);
-
-        Debug.LogFormat("[Challenge & Contact #{0}] The clues are {1}, {2}, and {3}.", _moduleID, usedClues[0].Replace("\n", " "), usedClues[1].Replace("\n", " "), usedClues[2].Replace("\n", " "));
-
-        // End of module generation
-        
-        for (int i = 0; i < 3; i++)
-        {
-            displayedLetters[i] = "";
-        }
-
-        for (int i = 0; i < 3; i++)
-        {
-            for (int x = 0; x < 26; x++)
+            for (int x = 0; x < 3; x++)
             {
-                if (alphabet[x] == answers[2].Substring(i, 1))
+                for (int i = 0; i < counter; i++)
                 {
-                    letterNumbers[i] = x;
-                    break;
+                    slightlyMorePossibleAnswers[i] = "";
                 }
+
+                CheckIfContains(x);
+                counter = 0;
+
+                for (int i = 0; i < 22; i++)
+                {
+                    if (containChecker[i])
+                    {
+                        slightlyMorePossibleAnswers[counter] = clues[i];
+                        counter++;
+                    }
+                }
+
+                otherCounter = Random.Range(0, counter);
+                usedClues[x] = slightlyMorePossibleAnswers[otherCounter];
             }
 
-            firstCipherLetters[i] = alphabet[(letterNumbers[i] + 13) % 26];
-            secondCipherLetters[i] = alphabet[25 - letterNumbers[i]];
-        }
+            Debug.LogFormat("[Challenge & Contact #{0}] The words are {1}, {2}, and {3}.", _moduleID, answers[0], answers[1], answers[2]);
 
-        SetUpRuleseed();
+            Debug.LogFormat("[Challenge & Contact #{0}] The clues are {1}, {2}, and {3}.", _moduleID, usedClues[0].Replace("\n", " "), usedClues[1].Replace("\n", " "), usedClues[2].Replace("\n", " "));
+
+            // End of module generation
+
+            for (int i = 0; i < 3; i++)
+            {
+                displayedLetters[i] = "";
+            }
+
+            for (int i = 0; i < 3; i++)
+            {
+                for (int x = 0; x < 26; x++)
+                {
+                    if (alphabet[x] == answers[2].Substring(i, 1))
+                    {
+                        letterNumbers[i] = x;
+                        break;
+                    }
+                }
+
+                firstCipherLetters[i] = alphabet[(letterNumbers[i] + 13) % 26];
+                secondCipherLetters[i] = alphabet[25 - letterNumbers[i]];
+            }
+
+            SetUpRuleseed();
+        }
+        catch
+        {
+            var list = new List<string>();
+            var list2 = new List<string>();
+            for (int i = 0; i < possibleFirstAnswers.Length; i++)
+            {
+                //We'll just assume here that the first list will always have at least one matching possibility
+                //list.Add(possibleSecondAnswers.Where(x => x.Substring(0, 1) == possibleFirstAnswers[i].Substring(0, 1)).Count().ToString());
+                var list3 = possibleSecondAnswers.Where(x => x.Substring(0, 1) == possibleFirstAnswers[i].Substring(0, 1) && x != possibleFirstAnswers[i]).ToList();
+                for (int j = 0; j < list3.Count; j++)
+                {
+                    var hold = possibleFinalAnswers.Where(x => x.Substring(0, 2) == list3[j].Substring(0, 2) && x != list3[j]).ToList();
+                    hold.Remove(possibleFirstAnswers[i]);
+                    hold.Remove(list3[j]);
+                    if (hold.Count() == 0)
+                    {
+                        list2.Add(possibleFirstAnswers[i] + " (" + i + "): " + list3[j] + " (" + j + ")");
+                    }
+                }
+            }
+            if (list.Count > 0) list.Add("\n");
+            list = list.Concat(list2).ToList();
+            //This line will give any values that would result in an OutOfRange Exception.
+            //However, I'm not certain if the values of my code will match the same values of slightlyMorePossibleAnswers
+            Debug.LogFormat("<Challenge & Contact #{0}> {1}", _moduleID, string.Join("\n", list.ToArray()));
+        }
 
         for (int i = 0; i < 26; i++)
         {
@@ -379,7 +412,7 @@ public class moduleScript : MonoBehaviour {
     {
         var rnd = ruleseed.GetRNG();
         int[] unicornAmounts = { Info.GetBatteryCount(), Info.GetBatteryHolderCount(), Info.GetIndicators().Count(), Info.GetPortCount(), Info.GetPortPlateCount(), Info.GetTwoFactorCounts(), Info.GetModuleNames().Count() };
-        
+
         if (rnd.Seed != 1)
         {
             int rndNum = rnd.Next(5, 9);
@@ -403,7 +436,7 @@ public class moduleScript : MonoBehaviour {
 
             Debug.LogFormat("[Challenge & Contact #{0}] This module is using ruleseed, seed #{1}.", _moduleID, rnd.Seed);
         }
-        
+
         if (Info.GetOnIndicators().Contains("BOB") && unicornAmounts[unicornRule[0]] == unicornRule[1])
         {
             for (int i = 0; i < 3; i++)
@@ -651,7 +684,7 @@ public class moduleScript : MonoBehaviour {
     void Contact()
     {
         StartCoroutine("Flip");
-        
+
         challenge.text = "";
 
         StartCoroutine("Timer");
@@ -660,7 +693,7 @@ public class moduleScript : MonoBehaviour {
         {
             for (int i = 0; i < stageNum * Random.Range(0, 3); i++)
             {
-                rotationAmount[Random.Range(0,26)] += Random.Range(0, 360);
+                rotationAmount[Random.Range(0, 26)] += Random.Range(0, 360);
             }
 
             for (int i = 0; i < 26; i++)
@@ -669,7 +702,7 @@ public class moduleScript : MonoBehaviour {
                 {
                     rotationAmount[i] = 0;
                 }
-                
+
                 keyText[i].transform.Rotate(Vector3.forward, rotationAmount[i]);
             }
         }
@@ -909,32 +942,32 @@ public class moduleScript : MonoBehaviour {
     public KMSelectable.OnInteractHandler KeyPressed(int i)
     {
         return delegate
+        {
+            keys[i].AddInteractionPunch();
+
+            if (flipped)
             {
-                keys[i].AddInteractionPunch();
+                challenge.color = new Color32(255, 255, 255, 255);
 
-                if (flipped)
+                word = word + keyText[i].text;
+
+                if (word.Length > 12 || (word.Length > 7 && word.Substring(0, 8) == "Stop it."))
                 {
-                    challenge.color = new Color32(255, 255, 255, 255);
+                    word = "Stop it.";
+                    challenge.color = new Color32(255, 0, 0, 255);
 
-                    word = word + keyText[i].text;
-
-                    if (word.Length > 12 || (word.Length > 7 && word.Substring(0, 8) == "Stop it."))
+                    if (!soundPlaying)
                     {
-                        word = "Stop it.";
-                        challenge.color = new Color32(255, 0, 0, 255);
-
-                        if (!soundPlaying)
-                        {
-                            StartCoroutine("WaitForStopIt");
-                            StartCoroutine("flashRed");
-                        }
+                        StartCoroutine("WaitForStopIt");
+                        StartCoroutine("flashRed");
                     }
-
-                    challenge.text = word;
                 }
 
-                return false;
-            };
+                challenge.text = word;
+            }
+
+            return false;
+        };
     }
 
     IEnumerator eraseWord()
@@ -968,7 +1001,7 @@ public class moduleScript : MonoBehaviour {
         challenge.color = new Color32(255, 0, 0, 255);
     }
 
-    IEnumerator ProcessTwitchCommand (string command)
+    IEnumerator ProcessTwitchCommand(string command)
     {
         if (command.ToLowerInvariant().StartsWith("submit "))
         {
@@ -1059,7 +1092,7 @@ public class moduleScript : MonoBehaviour {
             {
                 Audio.PlaySoundAtTransform(weterSounds[0], ActualModule.transform);
             }
-            
+
             else if (randomSound == 5)
             {
                 Audio.PlaySoundAtTransform(jerrySounds[0], ActualModule.transform);
@@ -1082,12 +1115,12 @@ public class moduleScript : MonoBehaviour {
             {
                 if (soundNum == 1)
                 {
-                    Audio.PlaySoundAtTransform(TimwiChallenges[Random.Range(0,3)], ActualModule.transform);
+                    Audio.PlaySoundAtTransform(TimwiChallenges[Random.Range(0, 3)], ActualModule.transform);
                 }
-                
+
                 else
                 {
-                    Audio.PlaySoundAtTransform(TimwiCounts[(soundNum - 2) * 3 + Random.Range(0,3)], ActualModule.transform);
+                    Audio.PlaySoundAtTransform(TimwiCounts[(soundNum - 2) * 3 + Random.Range(0, 3)], ActualModule.transform);
                 }
             }
 
@@ -1095,7 +1128,7 @@ public class moduleScript : MonoBehaviour {
             {
                 Audio.PlaySoundAtTransform(YabbaSounds[soundNum], ActualModule.transform);
             }
-            
+
             else if (randomChallenge == 4)
             {
                 Audio.PlaySoundAtTransform(weterSounds[soundNum], ActualModule.transform);
