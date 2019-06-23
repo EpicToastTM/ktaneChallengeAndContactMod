@@ -98,7 +98,7 @@ public class moduleScript : MonoBehaviour
     // 133 possible second answers.
 
     private string[] possibleFirstAnswers = { "coordinates", "code", "colored", "complicated", "cooking",
-                                          "conservatory", "lightspeed", "listening", "library", "maintenance", "mafia", "math", "masher", "frk", "bob", "sig", "sink", "logical", "logic",
+                                          "conservatory", "lightspeed", "listening", "library", "maintenance", "mafia", "math", "masher", "frk", "bob", "sig", "logical", "logic",
                                           "knob", "pcmcia", "msa", "trn", "the", "rhythms", "kitchen", "study", "ind", "instructions", "india",
                                           "quebec", "qualities", "quintuples", "kudosudoku", "balloon", "battleship", "ballroom",
                                           "papa", "potion", "stepladder", "adam", "semaphore", "barely", "caller", "duster", "dave",
