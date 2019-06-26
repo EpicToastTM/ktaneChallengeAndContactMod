@@ -142,6 +142,9 @@ public class moduleScript : MonoBehaviour
     private string[] YabbaSounds = { "yabbaContact", "yabbaChallenge", "yabbaThree", "yabbaTwo", "yabbaOne" };
     private string[] weterSounds = { "weterContact", "weterChallenge", "weterThree", "weterTwo", "weterOne" };
     private string[] jerrySounds = { "JerryErisContact", "JerryErisChallenge", "JerryEris3", "JerryEris2", "JerryEris1" };
+    private string[] TasContacts = { "tasContact1", "tasContact2" };
+    private string[] TasChallenges = { "tasChallenge1", "tasChallenge2" };
+    private string[] TasCounts = { "tasThree", "tasTwo", "tasOne" };
 
     private int randomChallenge = 0;
     private int randomSound = 0;
@@ -1062,7 +1065,7 @@ public class moduleScript : MonoBehaviour
     {
         if (soundNum == 0)
         {
-            randomSound = Random.Range(0, 6);
+            randomSound = Random.Range(0, 7);
             if (randomSound == randomChallenge)
             {
                 randomSound = (randomSound + 1) % 6;
@@ -1096,6 +1099,11 @@ public class moduleScript : MonoBehaviour
             else if (randomSound == 5)
             {
                 Audio.PlaySoundAtTransform(jerrySounds[0], ActualModule.transform);
+            }
+
+            else if (randomSound == 6)
+            {
+                Audio.PlaySoundAtTransform(TasContacts[Random.Range(0, 2)], ActualModule.transform);
             }
         }
 
@@ -1137,6 +1145,19 @@ public class moduleScript : MonoBehaviour
             else if (randomChallenge == 5)
             {
                 Audio.PlaySoundAtTransform(jerrySounds[soundNum], ActualModule.transform);
+            }
+
+            else if (randomChallenge == 6)
+            {
+                if (soundNum == 1)
+                {
+                    Audio.PlaySoundAtTransform(TasChallenges[Random.Range(0, 2)], ActualModule.transform);
+                }
+
+                else
+                {
+                    Audio.PlaySoundAtTransform(TasCounts[soundNum - 2], ActualModule.transform);
+                }
             }
         }
     }
