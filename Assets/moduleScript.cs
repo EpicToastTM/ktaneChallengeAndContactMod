@@ -108,7 +108,7 @@ public class moduleScript : MonoBehaviour
                                           "catchphrase", "seated", "aluga", "astrology", "caadarim", "docsplode", "flaurim", "lanaluff", "lamp", "magmy", "ukkens",
                                           "uncolored", "vga", "victor", "zapra", "moonstone", "scripting", "factory", "hexamaze", "hunting", "hdmi", "hrv", "hall", "mike",
                                           "varicolored", "zoni", "zooties", "cryptography", "decolored", "hotel", "module", "wingdings", "wires", "widgeting", "aa", "alfa", "pong", "fogey", "hedgehog", "morse", 
-                                          "bamboozling", "gary", "george", "golf", "gloorim", "risky" };
+                                          "bamboozling", "gary", "golf", "gloorim", "risky" };
 
     // 96 possible first answers.
 
@@ -1138,7 +1138,7 @@ public class moduleScript : MonoBehaviour
 
                 else
                 {
-                    Audio.PlaySoundAtTransform(TimwiCounts[soundNum - 2 + 3 * Random.Range(0, 3)], ActualModule.transform);
+                    Audio.PlaySoundAtTransform(TimwiCounts[(soundNum - 2) * 3 + Random.Range(0, 3)], ActualModule.transform);
                 }
             }
 
