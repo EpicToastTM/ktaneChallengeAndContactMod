@@ -157,6 +157,8 @@ public class moduleScript : MonoBehaviour
     private string commandEnd;
     private bool soundPlaying = false;
 
+    private bool generated = false;
+
     private float[] rotationAmount = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
     private int[] firstRule = { 6, 0 }; // Holds the rule for which cipher is used. First # is the number used, second # is the condition it must be.
     // First #: 0-5: sum of #'th digit of all two factors. 6: solved modules. 7: unsolved modules. 8: # of strikes.
@@ -187,7 +189,10 @@ public class moduleScript : MonoBehaviour
 
         letters.text = "";
 
-        Init();
+        while(!generated)
+        {
+            Init();
+        }
     }
 
     void Init()
@@ -291,7 +296,14 @@ public class moduleScript : MonoBehaviour
                 }
             }
 
-            answers[1] = slightlyMorePossibleAnswers[Random.Range(0, counter)];
+            if (counter != 0) 
+            {
+                answers[1] = slightlyMorePossibleAnswers[Random.Range(0, counter)];
+            }
+            else 
+            {
+                answers[1] = "flag";
+            }
 
             for (int i = 0; i < counter; i++)
             {
@@ -309,31 +321,47 @@ public class moduleScript : MonoBehaviour
                 }
             }
 
-            answers[2] = slightlyMorePossibleAnswers[Random.Range(0, counter)];
-
-            for (int x = 0; x < 3; x++)
+            if (counter != 0) 
             {
-                for (int i = 0; i < counter; i++)
-                {
-                    slightlyMorePossibleAnswers[i] = "";
-                }
-
-                CheckIfContains(x);
-                counter = 0;
-
-                for (int i = 0; i < 22; i++)
-                {
-                    if (containChecker[i])
-                    {
-                        slightlyMorePossibleAnswers[counter] = clues[i];
-                        counter++;
-                    }
-                }
-
-                otherCounter = Random.Range(0, counter);
-                usedClues[x] = slightlyMorePossibleAnswers[otherCounter];
+                answers[2] = slightlyMorePossibleAnswers[Random.Range(0, counter)];
+            }
+            else 
+            {
+                answers[2] = "flag";
             }
 
+            if(!answers[].Contains("flag"))
+            {
+                for (int x = 0; x < 3; x++)
+                {
+                    for (int i = 0; i < counter; i++)
+                    {
+                        slightlyMorePossibleAnswers[i] = "";
+                    }
+
+                    CheckIfContains(x);
+                    counter = 0;
+
+                    for (int i = 0; i < 22; i++)
+                    {
+                        if (containChecker[i])
+                        {
+                            slightlyMorePossibleAnswers[counter] = clues[i];
+                            counter++;
+                        }
+                    }
+
+                    otherCounter = Random.Range(0, counter);
+                    usedClues[x] = slightlyMorePossibleAnswers[otherCounter];
+                }
+            } 
+            else
+            {
+                usedClues[0] = "whoops";
+                usedClues[1] = "nope";
+                usedClues[2] = "denied";
+            }
+            
             Debug.LogFormat("[Challenge & Contact #{0}] The words are {1}, {2}, and {3}.", _moduleID, answers[0], answers[1], answers[2]);
 
             Debug.LogFormat("[Challenge & Contact #{0}] The clues are {1}, {2}, and {3}.", _moduleID, usedClues[0].Replace("\n", " "), usedClues[1].Replace("\n", " "), usedClues[2].Replace("\n", " "));
@@ -387,6 +415,16 @@ public class moduleScript : MonoBehaviour
             //This line will give any values that would result in an OutOfRange Exception.
             //However, I'm not certain if the values of my code will match the same values of slightlyMorePossibleAnswers
             Debug.LogFormat("<Challenge & Contact #{0}> {1}", _moduleID, string.Join("\n", list.ToArray()));
+        }
+
+        if(answers[].Contains("flag"))
+        {
+            Debug.LogFormat("[Challenge & Contact #{0}] As you can see, something went wrong. Let's try that again, shall we?", _moduleID);
+            return;
+        }
+        else
+        {
+            generated = true;
         }
 
         for (int i = 0; i < 26; i++)
