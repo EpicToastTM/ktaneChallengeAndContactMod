@@ -330,7 +330,7 @@ public class moduleScript : MonoBehaviour
                 answers[2] = "flag";
             }
 
-            if(!answers[].Contains("flag"))
+            if (!answers.Contains("flag"))
             {
                 for (int x = 0; x < 3; x++)
                 {
@@ -417,7 +417,7 @@ public class moduleScript : MonoBehaviour
             Debug.LogFormat("<Challenge & Contact #{0}> {1}", _moduleID, string.Join("\n", list.ToArray()));
         }
 
-        if(answers[].Contains("flag"))
+        if(answers.Contains("flag"))
         {
             Debug.LogFormat("[Challenge & Contact #{0}] As you can see, something went wrong. Let's try that again, shall we?", _moduleID);
             return;
